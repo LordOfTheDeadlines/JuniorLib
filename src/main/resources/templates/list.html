@@ -25,7 +25,7 @@
         <div class="row article" th:each="article : ${articles}" >
             <div class="col-md-10 col-md-offset-1" th:id="${article.id}">
                 <h3 th:text="${article.title}">Статья</h3>
-                <p th:text="${article.subject}">Предмет</p>
+                <p th:text="${article.subject.name}">Предмет</p>
 <!--                <a th:href=${"/article?id="+article.id}>Перейти на страницу статьи</a>-->
             </div>
         </div>

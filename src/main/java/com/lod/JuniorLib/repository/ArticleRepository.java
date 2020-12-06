@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Long> {
-    List<Article> findBySubject(String subject);
+    List<Article> findBySubjectName(String subject);
 }

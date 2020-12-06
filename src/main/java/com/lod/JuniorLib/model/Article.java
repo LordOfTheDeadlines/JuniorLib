@@ -2,6 +2,7 @@ package com.lod.JuniorLib.model;
 
 import com.sun.istack.NotNull;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.mapping.Join;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -29,31 +30,24 @@ public class Article {
     @NotNull
     private String content;
 
-
-
-////    @Column(name = "subject", nullable=false)
-//    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-////    @JoinColumn(name="sub_id", nullable=false)
-//        @JoinTable(name = "subjects",
-//            joinColumns = { @JoinColumn(name = "id") },
-//            inverseJoinColumns = { @JoinColumn(name = "sub_id") })
-    private String subject;
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "tags",
-//            joinColumns = { @JoinColumn(name = "id") },
-//            inverseJoinColumns = { @JoinColumn(name = "tag_id") })
-//    private Set<Tag> tags = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="subject_id")
+    private Subject subject;
 
     public Article(){
 
     }
 
-    public Article(String title, String content, String subject){//, Set<Tag> tags){
+    public Article(String title, String content, Subject subject){
         this.title = title;
         this.content = content;
         this.subject = subject;
-//        this.tags = tags;
+    }
+
+    public Article(String title, String content, String subjectName){
+        this.title = title;
+        this.content = content;
+        this.subject = new Subject(subjectName);
     }
 
     public Long getId(){
@@ -68,7 +62,7 @@ public class Article {
         return content;
     }
 
-    public String getSubject(){
+    public Subject getSubject(){
         return subject;
     }
 

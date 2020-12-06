@@ -29,10 +29,13 @@ public class ArticleService {
 
     }
 
-    public void create(String title, String content, String subject) {
+    public void create(String title, String content, String subjectName) {
+        Subject subject = new Subject(subjectName);
+        if(subjectRepository.findByName(subjectName)==null){
+            subjectRepository.save(subject);
+        }
         Article article = new Article(title, content, subject);
         articleRepository.save(article);
-        subjectRepository.save(new Subject(subject));
     }
 
     public Iterable<Article> listAllArticles() {
@@ -47,23 +50,11 @@ public class ArticleService {
     }
 
     public Iterable<Article> findBySubject(String subject){
-        return articleRepository.findBySubject(subject);
+        return articleRepository.findBySubjectName(subject);
     }
 
     public void remove(Long id){
        // base.deleteArticle(id);
         articleRepository.deleteById(id);
-    }
-
-//    public boolean checkSessionId(String sessionID){
-//        return sessionBase.containsKey(sessionID);
-//    }
-
-    public boolean quit(String sessionID){
-//        if(sessionBase.containsKey(sessionID)){
-//            sessionBase.remove(sessionID);
-//            return true;
-//        }
-        return false;
     }
 }

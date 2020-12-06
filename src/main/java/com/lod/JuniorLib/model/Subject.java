@@ -16,9 +16,6 @@ public class Subject {
 //    @Column(name = "sub_name", unique=true, nullable=false)
     private String name;
 
-//    @OneToMany (mappedBy="subjects", fetch=FetchType.EAGER)
-//    private Set<Article> articles;
-
     public Subject(){
 
     }
@@ -35,7 +32,4 @@ public class Subject {
         return name;
     }
 
-//    public Set<Article> getArticles(){
-//        return articles;
-//    }
 }
