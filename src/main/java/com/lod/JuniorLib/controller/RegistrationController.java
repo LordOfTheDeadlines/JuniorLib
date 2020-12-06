@@ -3,7 +3,7 @@ package com.lod.JuniorLib.controller;
 import com.lod.JuniorLib.model.Role;
 import com.lod.JuniorLib.model.User;
 import com.lod.JuniorLib.repository.UserRepository;
-import com.lod.JuniorLib.service.RegistrationService;
+import com.lod.JuniorLib.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller
 public class RegistrationController {
     @Autowired
-    RegistrationService registrationService;
+    UserService userService;
 
     @Autowired
     UserRepository userRepository;
