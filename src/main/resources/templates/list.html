@@ -16,6 +16,7 @@
     </div>
     <a href="/article/new">Добавить статью</a>
     <form method="post" action="filter">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="text" name="filter"/>
         <button type="submit">Найти</button>
     </form>
