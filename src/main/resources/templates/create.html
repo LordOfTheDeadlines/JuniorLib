@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Новая статья</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${appName}" style="color: green">Default app name</h1>
+    <hr/>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="form-group">
+                        <textarea name="title" class="form-control" cols="3" rows="7" placeholder="Название"></textarea>
+                        <textarea name="subject" class="form-control" cols="3" rows="7" placeholder="Предмет"></textarea>
+                        <textarea name="content" class="form-control" cols="30" rows="7" placeholder="Текст"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Добавить новую статью">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
