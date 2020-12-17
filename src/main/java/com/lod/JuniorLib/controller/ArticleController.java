@@ -23,15 +23,14 @@ public class ArticleController {
 
     @PostMapping("/article/new")
     public String doCreate(@ModelAttribute("title") String title, @ModelAttribute("content") String content
-            , @ModelAttribute("subject") String subject) {
-        articleService.create(title, content, subject);
-        return "redirect:/";
+            , @ModelAttribute("subject") String subject,  @ModelAttribute("tags") String tags) {
+        articleService.create(title, content, subject, tags);
+        return "redirect:/articles";
     }
-
 
     @DeleteMapping("/article/{id}/delete")
-    public void delete(@PathVariable("id") Long id){
+    public String delete(@PathVariable("id") Long id){
         articleService.remove(id);
+        return "redirect:/articles";
     }
-
 }

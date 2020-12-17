@@ -33,7 +33,8 @@ public class ArticleViewController {
         model.addAttribute("title", articleService.find(id).getTitle());
         model.addAttribute("content", articleService.find(id).getContent());
 //        return "Здесь будет страница статьи №" + id;
-        return "article";
+//        return "article";
+        return articleService.find(id).getContent();
     }
 
     @PostMapping("filter")

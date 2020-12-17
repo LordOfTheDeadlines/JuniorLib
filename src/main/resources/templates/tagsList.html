@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${appName}" style="color: green">Default app name</h1>
+    <hr/>
+    <div class="content">
+        <div class="row article" th:each="tag : ${tags}" >
+            <div class="col-md-10 col-md-offset-1" th:id="${tag.id}">
+                <h3 th:text="${tag.name}">Тег</h3>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

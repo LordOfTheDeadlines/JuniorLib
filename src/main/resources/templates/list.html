@@ -26,7 +26,11 @@
             <div class="col-md-10 col-md-offset-1" th:id="${article.id}">
                 <h3 th:text="${article.title}">Статья</h3>
                 <p th:text="${article.subject.name}">Предмет</p>
-<!--                <a th:href=${"/article?id="+article.id}>Перейти на страницу статьи</a>-->
+                <a th:href=${"/article/"+article.id}>Перейти на страницу статьи</a>
+<!--                <a th:href=${"/article/"+article.id+"/delete"}>Удалить статью</a>-->
+<!--                <form method="delete" th:action="@{/article/"+article.id+"/delete}" >-->
+<!--                    <div><input type="submit" value="Удалить статью"/></div>-->
+<!--                </form>-->
             </div>
         </div>
     </div>

@@ -6,14 +6,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-//@Table(name= "subjects")
+@Table(name= "subject")
 public class Subject {
     @Id
     @GeneratedValue
-//    @Column(name = "sub_id")
     private Long id;
 
-//    @Column(name = "sub_name", unique=true, nullable=false)
     private String name;
 
     public Subject(){
@@ -32,4 +30,6 @@ public class Subject {
         return name;
     }
 
+    @OneToMany(mappedBy = "subject", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval = true)
+    private Set<Article> articles;
 }

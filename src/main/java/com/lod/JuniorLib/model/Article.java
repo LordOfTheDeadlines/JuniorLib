@@ -1,47 +1,41 @@
 package com.lod.JuniorLib.model;
 
-import com.sun.istack.NotNull;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-import org.hibernate.mapping.Join;
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
-
-//import org.hibernate.validator.constraints.NotEmpty;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name= "article")
 public class Article {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @NonNull
-//    @Column(name = "id")
     private Long id;
 
-//    @Column(name = "title", unique=true, nullable=false)
-    @NotNull
     private String title;
 
-//    @Column(name = "content", unique=true, nullable=false)
-    @NotNull
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="subject_id")
     private Subject subject;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name="article_tags",
+            joinColumns={@JoinColumn(name="tag_id")},
+            inverseJoinColumns={@JoinColumn(name="article_id")}
+    )
+    private Set<Tag> tags = new HashSet<>();
 
     public Article(){
 
     }
 
-    public Article(String title, String content, Subject subject){
+    public Article(String title, String content, Subject subject, String tagsStr){
         this.title = title;
         this.content = content;
         this.subject = subject;
+        this.tags = parseTags(tagsStr);
     }
 
     public Article(String title, String content, String subjectName){
@@ -66,7 +60,17 @@ public class Article {
         return subject;
     }
 
-//    public Set<Tag> getTags(){
-//        return tags;
-//    }
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public Set<Tag> parseTags(String tagsStr){
+       String[] tags = tagsStr.split(" ");
+       HashSet<Tag> result = new HashSet<>();
+       for(String tag:tags){
+           result.add(new Tag(tag));
+       }
+       return result;
+    }
 }
+

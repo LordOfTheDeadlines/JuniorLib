@@ -1,23 +1,19 @@
 package com.lod.JuniorLib.service;
 
-//import com.lod.JuniorLib.dbService.DBService;
-//import com.lod.JuniorLib.dbService.dataSets.Article;
 import com.lod.JuniorLib.model.Article;
 import com.lod.JuniorLib.model.Subject;
+import com.lod.JuniorLib.model.Tag;
 import com.lod.JuniorLib.repository.ArticleRepository;
 import com.lod.JuniorLib.repository.SubjectRepository;
+import com.lod.JuniorLib.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class ArticleService {
-
-//    private static Map<String, Article> sessionBase = new HashMap<>();
-//    private DBService base = new DBService();
 
     @Autowired
     ArticleRepository articleRepository;
@@ -25,16 +21,29 @@ public class ArticleService {
     @Autowired
     SubjectRepository subjectRepository;
 
+    @Autowired
+    TagRepository tagRepository;
+
     public ArticleService(){
 
     }
 
-    public void create(String title, String content, String subjectName) {
+    public void create(String title, String content, String subjectName, String tagsStr) {
         Subject subject = new Subject(subjectName);
-        if(subjectRepository.findByName(subjectName)==null){
+        Subject subjectFromDB = subjectRepository.findByName(subjectName);
+        if(subjectFromDB==null){
             subjectRepository.save(subject);
         }
-        Article article = new Article(title, content, subject);
+
+        String[] tags = tagsStr.split(" ");
+        for (String tag : tags) {
+            Tag tagFromDB = tagRepository.findByName(tag);
+            if (tagFromDB == null) {
+                tagRepository.save(new Tag(tag));
+            }
+        }
+
+        Article article = new Article(title, content, subject, tagsStr);
         articleRepository.save(article);
     }
 
