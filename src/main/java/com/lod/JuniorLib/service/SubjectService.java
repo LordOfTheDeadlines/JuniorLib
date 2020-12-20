@@ -19,7 +19,6 @@ public class SubjectService {
     }
 
     public Iterable<Subject> listAllSubjects() {
-        //  return base.findAllArticles();
         return subjectRepository.findAll();
     }
 
@@ -30,7 +29,6 @@ public class SubjectService {
     }
 
     public void remove(Long subjectId){
-        // base.deleteArticle(id);
         subjectRepository.deleteById(subjectId);
     }
 }

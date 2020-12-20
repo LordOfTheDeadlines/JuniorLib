@@ -9,6 +9,11 @@
 <body>
 <div class="container">
     <h1 th:text="${appName}" style="color: green">Default app name</h1>
+    <form method="post" action="filter">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="text" name="filter"/>
+        <button type="submit">Найти статьи по предмету</button>
+    </form>
     <hr/>
     <div class="content">
         <div class="row article" th:each="subject : ${subjects}" >

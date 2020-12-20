@@ -30,6 +30,6 @@ public class Subject {
         return name;
     }
 
-    @OneToMany(mappedBy = "subject", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "subject", cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<Article> articles;
 }

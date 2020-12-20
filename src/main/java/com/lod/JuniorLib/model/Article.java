@@ -16,7 +16,6 @@ public class Article {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="subject_id")
     private Subject subject;
 
     @ManyToMany(cascade = { CascadeType.ALL })

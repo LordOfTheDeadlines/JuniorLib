@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -34,21 +35,12 @@ public class ArticleService {
         if(subjectFromDB==null){
             subjectRepository.save(subject);
         }
-
-        String[] tags = tagsStr.split(" ");
-        for (String tag : tags) {
-            Tag tagFromDB = tagRepository.findByName(tag);
-            if (tagFromDB == null) {
-                tagRepository.save(new Tag(tag));
-            }
-        }
-
+        else subject = subjectFromDB;
         Article article = new Article(title, content, subject, tagsStr);
         articleRepository.save(article);
     }
 
     public Iterable<Article> listAllArticles() {
-      //  return base.findAllArticles();
         return articleRepository.findAll();
     }
 
@@ -62,8 +54,11 @@ public class ArticleService {
         return articleRepository.findBySubjectName(subject);
     }
 
+    public Iterable<Article> findByTagsList(List<Long> tagsId){
+        return articleRepository.findByTagsIn(tagsId);
+    }
+
     public void remove(Long id){
-       // base.deleteArticle(id);
         articleRepository.deleteById(id);
     }
 }

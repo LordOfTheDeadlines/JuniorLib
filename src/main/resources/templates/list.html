@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>TODO</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -15,22 +15,34 @@
         </form>
     </div>
     <a href="/article/new">Добавить статью</a>
+    <a href="/subjects">Посмотреть список предметов</a>
     <form method="post" action="filter">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="text" name="filter"/>
         <button type="submit">Найти</button>
     </form>
+<!--    <form action="#" th:action="@{salvar}" th:object="${consulta}" method="POST">-->
+<!--        <p>-->
+<!--            <select name="select" multiple>-->
+<!--            <option class="row article" th:each="tag : ${tags}" th:value="${tag.id}" th:text='${"ii "+tag.name}'>-->
+<!--            </option>-->
+<!--        </select>-->
+<!--            <button name="filterByTags" type="submit" value="0">Remove row</button>-->
+<!--        </p>-->
+<!--    </form>-->
     <hr/>
     <div class="content">
         <div class="row article" th:each="article : ${articles}" >
             <div class="col-md-10 col-md-offset-1" th:id="${article.id}">
                 <h3 th:text="${article.title}">Статья</h3>
                 <p th:text="${article.subject.name}">Предмет</p>
-                <a th:href=${"/article/"+article.id}>Перейти на страницу статьи</a>
+                <div class="row article" th:each="tag : ${article.tags}" >
+                    <p th:text="${tag.name}">Предмет</p>
+                </div>
+                <a th:href='${"/article/"+article.id}'>Перейти на страницу статьи</a>
 <!--                <a th:href=${"/article/"+article.id+"/delete"}>Удалить статью</a>-->
-<!--                <form method="delete" th:action="@{/article/"+article.id+"/delete}" >-->
 <!--                    <div><input type="submit" value="Удалить статью"/></div>-->
-<!--                </form>-->
+<!--                    <button type="submit">Найти</button>-->
             </div>
         </div>
     </div>
