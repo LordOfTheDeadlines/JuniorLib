@@ -18,11 +18,15 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(
+//            targetEntity=Article.class,
+//            cascade = { CascadeType.ALL }
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH }
+            )
     @JoinTable(
             name="article_tags",
-            joinColumns={@JoinColumn(name="tag_id")},
-            inverseJoinColumns={@JoinColumn(name="article_id")}
+            joinColumns={@JoinColumn(name="article_id")},
+            inverseJoinColumns={@JoinColumn(name="tag_id")}
     )
     private Set<Tag> tags = new HashSet<>();
 

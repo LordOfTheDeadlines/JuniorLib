@@ -2,6 +2,7 @@ package com.lod.JuniorLib.controller;
 
 import com.lod.JuniorLib.model.Article;
 import com.lod.JuniorLib.service.ArticleService;
+import com.lod.JuniorLib.service.SubjectService;
 import com.lod.JuniorLib.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class ArticleViewController {
     ArticleService articleService;
 
     @Autowired
+    SubjectService subjectService;
+
+    @Autowired
     TagService tagService;
 
     @GetMapping("/")
@@ -28,6 +32,7 @@ public class ArticleViewController {
     public String list(Model model) {
         model.addAttribute("appName", "Список статей");
         model.addAttribute("articles", articleService.listAllArticles());
+        model.addAttribute("subjects", subjectService.listAllSubjects());
         model.addAttribute("tags", tagService.listAllTags());
         return "list";
     }

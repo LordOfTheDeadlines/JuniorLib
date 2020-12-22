@@ -1,6 +1,5 @@
 package com.lod.JuniorLib.model;
 
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,17 +13,18 @@ public class Tag {
 
     private String name;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(
-            name="articles_in_tag",
-            joinColumns={@JoinColumn(name="article_id")},
-            inverseJoinColumns={@JoinColumn(name="tag_id")}
-
-    )
-    private Set<Tag> articles = new HashSet<>();
+//    @ManyToMany(
+//            targetEntity=Tag.class,
+//            cascade = {
+//            CascadeType.PERSIST,
+//            CascadeType.MERGE
+//    })
+//    @JoinTable(
+//            name="article_tags",
+//            joinColumns={@JoinColumn(name="tag_id")},
+//            inverseJoinColumns={@JoinColumn(name="article_id")}
+//    )
+//    private Set<Tag> articles = new HashSet<>();
 
     public Tag() {
 
@@ -50,11 +50,11 @@ public class Tag {
         this.name = name;
     }
 
-    public void setArticles(Set<Tag> articles) {
-        this.articles = articles;
-    }
-
-    public Set<Tag> getArticles() {
-        return articles;
-    }
+//    public void setArticles(Set<Tag> articles) {
+//        this.articles = articles;
+//    }
+//
+//    public Set<Tag> getArticles() {
+//        return articles;
+//    }
 }

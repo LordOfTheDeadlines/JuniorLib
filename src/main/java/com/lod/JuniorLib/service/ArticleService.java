@@ -37,6 +37,14 @@ public class ArticleService {
         }
         else subject = subjectFromDB;
         Article article = new Article(title, content, subject, tagsStr);
+//        Set<Tag> tags = article.getTags();
+//        for (Tag tag: tags){
+//            Tag tagFromDB = tagRepository.findByName(tag.getName());
+//            if(tagFromDB==null){
+//                tagRepository.save(tag);
+//            }
+//            else tag=tagFromDB;
+//        }
         articleRepository.save(article);
     }
 
@@ -59,6 +67,14 @@ public class ArticleService {
     }
 
     public void remove(Long id){
-        articleRepository.deleteById(id);
+        if(articleRepository.findById(id).isPresent()) {
+            Article article = articleRepository.findById(id).get();
+            List<Article> articlesWithSameSubject =
+                    articleRepository.findBySubjectName(article.getSubject().getName());
+            if(articlesWithSameSubject.size()==1){
+                subjectRepository.deleteById(article.getSubject().getId());
+            }
+            else articleRepository.deleteById(id);
+        }
     }
 }

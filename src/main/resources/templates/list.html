@@ -21,6 +21,17 @@
         <input type="text" name="filter"/>
         <button type="submit">Найти</button>
     </form>
+
+<!--        <form action="filter" method="post">-->
+<!--            <p>-->
+<!--                <select th:field="${userEmes.permission.id}" name="select">-->
+<!--                <option class="row article" th:each="subject : ${subjects}" th:value="${subject.id}" th:text='${subject.name}'>-->
+<!--                </option>-->
+<!--            </select>-->
+<!--                <button type="submit">Найти</button>-->
+<!--            </p>-->
+<!--        </form>-->
+
 <!--    <form action="#" th:action="@{salvar}" th:object="${consulta}" method="POST">-->
 <!--        <p>-->
 <!--            <select name="select" multiple>-->
@@ -40,9 +51,7 @@
                     <p th:text="${tag.name}">Предмет</p>
                 </div>
                 <a th:href='${"/article/"+article.id}'>Перейти на страницу статьи</a>
-<!--                <a th:href=${"/article/"+article.id+"/delete"}>Удалить статью</a>-->
-<!--                    <div><input type="submit" value="Удалить статью"/></div>-->
-<!--                    <button type="submit">Найти</button>-->
+                <a th:href=${"/article/"+article.id+"/delete"}>Удалить статью</a>
             </div>
         </div>
     </div>
