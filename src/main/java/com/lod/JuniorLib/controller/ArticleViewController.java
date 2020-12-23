@@ -52,6 +52,7 @@ public class ArticleViewController {
         if(filter != null && !filter.isEmpty())
             articles = articleService.findBySubject(filter);
         else  articles = articleService.listAllArticles();
+        model.put("appName", "Список статей по предмету "+filter);
         model.put("articles", articles);
         return "list";
     }
@@ -62,6 +63,7 @@ public class ArticleViewController {
             articles = articleService
                     .findByTagsList(Arrays.asList(filterByTags.split(" ")));
         else  articles = articleService.listAllArticles();
+        model.put("appName", "Поиск по "+filterByTags);
         model.put("articles", articles);
         return "list";
     }

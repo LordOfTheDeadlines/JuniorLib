@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TODO</title>
+    <title>Junior Library</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -16,6 +16,7 @@
     </div>
     <a href="/article/new">Добавить статью</a>
     <a href="/subjects">Посмотреть список предметов</a>
+    <a href="/articles">Посмотреть список статей</a>
     <h5 style="color: green">Поиск по предмету</h5>
     <form method="post" action="filter">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
