@@ -1,6 +1,5 @@
 package com.lod.JuniorLib.service;
 
-import com.lod.JuniorLib.model.Subject;
 import com.lod.JuniorLib.model.Tag;
 import com.lod.JuniorLib.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;

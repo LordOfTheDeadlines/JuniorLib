@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Map;
 
 @Controller
@@ -58,7 +59,8 @@ public class ArticleViewController {
     public String filterByTags(@RequestParam String filterByTags, Map<String, Object> model){
         Iterable<Article>articles;
         if(filterByTags != null && !filterByTags.isEmpty())
-            articles = articleService.findByTagsList(null);
+            articles = articleService
+                    .findByTagsList(Arrays.asList(filterByTags.split(" ")));
         else  articles = articleService.listAllArticles();
         model.put("articles", articles);
         return "list";

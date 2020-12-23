@@ -14,11 +14,9 @@ public class Tag {
     private String name;
 
 //    @ManyToMany(
-//            targetEntity=Tag.class,
 //            cascade = {
-//            CascadeType.PERSIST,
-//            CascadeType.MERGE
-//    })
+//                    CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+//            })
 //    @JoinTable(
 //            name="article_tags",
 //            joinColumns={@JoinColumn(name="tag_id")},

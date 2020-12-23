@@ -1,6 +1,5 @@
 package com.lod.JuniorLib.service;
 
-import com.lod.JuniorLib.model.User;
 import com.lod.JuniorLib.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

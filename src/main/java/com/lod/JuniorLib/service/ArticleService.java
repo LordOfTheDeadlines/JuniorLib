@@ -22,9 +22,6 @@ public class ArticleService {
     @Autowired
     SubjectRepository subjectRepository;
 
-    @Autowired
-    TagRepository tagRepository;
-
     public ArticleService(){
 
     }
@@ -32,19 +29,10 @@ public class ArticleService {
     public void create(String title, String content, String subjectName, String tagsStr) {
         Subject subject = new Subject(subjectName);
         Subject subjectFromDB = subjectRepository.findByName(subjectName);
-        if(subjectFromDB==null){
+        if(subjectFromDB==null)
             subjectRepository.save(subject);
-        }
         else subject = subjectFromDB;
         Article article = new Article(title, content, subject, tagsStr);
-//        Set<Tag> tags = article.getTags();
-//        for (Tag tag: tags){
-//            Tag tagFromDB = tagRepository.findByName(tag.getName());
-//            if(tagFromDB==null){
-//                tagRepository.save(tag);
-//            }
-//            else tag=tagFromDB;
-//        }
         articleRepository.save(article);
     }
 
@@ -62,8 +50,17 @@ public class ArticleService {
         return articleRepository.findBySubjectName(subject);
     }
 
-    public Iterable<Article> findByTagsList(List<Long> tagsId){
-        return articleRepository.findByTagsIn(tagsId);
+    public Iterable<Article> findByTagsList(List<String> tags){
+        Set<Article> result =new HashSet<>();
+        Iterable<Article> allArticles = articleRepository.findAll();
+        for(Article article:allArticles){
+            Set<String> tagNames = new HashSet<>();
+            for(Tag tag: article.getTags())
+                tagNames.add(tag.getName());
+            if(tagNames.containsAll(tags))
+                result.add(article);
+        }
+        return result;
     }
 
     public void remove(Long id){
@@ -71,9 +68,8 @@ public class ArticleService {
             Article article = articleRepository.findById(id).get();
             List<Article> articlesWithSameSubject =
                     articleRepository.findBySubjectName(article.getSubject().getName());
-            if(articlesWithSameSubject.size()==1){
+            if(articlesWithSameSubject.size()==1)
                 subjectRepository.deleteById(article.getSubject().getId());
-            }
             else articleRepository.deleteById(id);
         }
     }
