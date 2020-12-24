@@ -11,13 +11,13 @@ import java.util.logging.Logger;
 
 @Component
 @Aspect
-public class ContrLoggingAspect {
-    private Logger logger = Logger.getLogger(ServLoggingAspect.class.getName());
+public class LoggingAspect {
+    private Logger logger = Logger.getLogger(LoggingAspect.class.getName());
     @Pointcut("within(com.lod.JuniorLib.controller.*)")
-    public void stringProcessingControllersMethods() {
+    public void stringProcessingMethods() {
     }
 
-    @After("stringProcessingControllersMethods()")
+    @After("stringProcessingMethods()")
     public void logControllerMethodCall(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
         String className = jp.getSignature().getDeclaringTypeName().substring(29);
