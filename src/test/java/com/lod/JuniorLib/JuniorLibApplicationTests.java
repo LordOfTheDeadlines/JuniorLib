@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource("/application-test.properties")
 @Sql(value = {"/create-post-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"/create-post-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//@WithUserDetails(userDetailsServiceBeanName = "", value = "admin")
 @WithMockUser("admin")
 @SpringBootTest
 class JuniorLibApplicationTests {
@@ -46,26 +45,30 @@ class JuniorLibApplicationTests {
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("Добавить новую статью")));
-//		this.mockMvc.perform(get("/filter"))
-//				.andDo(print())
-//				.andExpect(status().isOk())
-//				.andExpect(content().string(containsString("")));
 		this.mockMvc.perform(get("/login?logout"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("You have been logged out.")));
+				.andExpect(content().string(containsString("Вы вышли из системы.")));
 	}
 
 	@Test
-	public void postRedirectTest() throws Exception{
-		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/article/new");
-		ResultActions result = mockMvc.perform(request);
-		result.andExpect(MockMvcResultMatchers.redirectedUrl("/articles"));
+	public void articleDeleteRedirectTest() throws Exception{
+		this.mockMvc.perform(get("/article/1/delete"))
+				.andExpect(authenticated())
+				.andExpect(redirectedUrl("/articles"));
 	}
 
 	@Test
 	public void articlesListDbTest() throws Exception {
 		this.mockMvc.perform(get("/articles"))
+				.andDo(print())
+				.andExpect(authenticated())
+				.andExpect(xpath(".//div[@class='content']/div").nodeCount(2));
+	}
+
+	@Test
+	public void subjectsListDbTest() throws Exception {
+		this.mockMvc.perform(get("/subjects"))
 				.andDo(print())
 				.andExpect(authenticated())
 				.andExpect(xpath(".//div[@class='content']/div").nodeCount(2));

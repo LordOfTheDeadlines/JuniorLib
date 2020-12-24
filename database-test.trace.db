@@ -1,0 +1,24 @@
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
+2020-12-25 00:49:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "TAGS" не найдена
+Table "TAGS" not found; SQL statement:
+delete from tags [42102-200]
