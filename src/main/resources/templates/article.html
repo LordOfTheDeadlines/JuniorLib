@@ -9,8 +9,10 @@
 <body>
 <div class="container">
     <h1 th:text="${article.title}">Статья</h1>
+    <h5 th:text='${"Предмет: "+article.subject.name}'>Предмет</h5>
     <hr/>
-    <div class="content" th:text="${article.content}">Содержание статьи</div>
+<!--    <div class="content" th:text="${article.content}">Содержание статьи</div>-->
+    <a th:href='${article.content}'>Перейти к источнику</a>
 </div>
 </body>
 </html>

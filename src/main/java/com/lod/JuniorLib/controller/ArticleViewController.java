@@ -38,12 +38,13 @@ public class ArticleViewController {
         return "list";
     }
 
-    @ResponseBody
     @GetMapping("/article/{id}")
     public String article(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("title", articleService.find(id).getTitle());
-        model.addAttribute("content", articleService.find(id).getContent());
-        return articleService.find(id).getContent();
+        model.addAttribute("article",articleService.find(id));
+//        model.addAttribute("title", articleService.find(id).getTitle());
+//        model.addAttribute("content", articleService.find(id).getContent());
+//        return articleService.find(id).getContent();
+        return "article";
     }
 
     @PostMapping("filter")
