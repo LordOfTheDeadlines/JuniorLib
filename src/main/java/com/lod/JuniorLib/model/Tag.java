@@ -1,8 +1,9 @@
 package com.lod.JuniorLib.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name= "tag")
@@ -12,17 +13,6 @@ public class Tag {
     private Long id;
 
     private String name;
-
-//    @ManyToMany(
-//            cascade = {
-//                    CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
-//            })
-//    @JoinTable(
-//            name="article_tags",
-//            joinColumns={@JoinColumn(name="tag_id")},
-//            inverseJoinColumns={@JoinColumn(name="article_id")}
-//    )
-//    private Set<Tag> articles = new HashSet<>();
 
     public Tag() {
 
@@ -48,11 +38,4 @@ public class Tag {
         this.name = name;
     }
 
-//    public void setArticles(Set<Tag> articles) {
-//        this.articles = articles;
-//    }
-//
-//    public Set<Tag> getArticles() {
-//        return articles;
-//    }
 }

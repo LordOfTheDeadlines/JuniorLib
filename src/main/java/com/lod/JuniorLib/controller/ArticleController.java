@@ -17,7 +17,7 @@ public class ArticleController {
 
     @GetMapping("/article/new")
     public String create(Model model) {
-        model.addAttribute("appName", "Список статей");
+        model.addAttribute("appName", "Добавить статью");
         return "create";
     }
 

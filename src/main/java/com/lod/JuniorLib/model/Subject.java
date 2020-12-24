@@ -28,6 +28,10 @@ public class Subject {
         return name;
     }
 
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
     @OneToMany(mappedBy = "subject", cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<Article> articles;
 }

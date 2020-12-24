@@ -12,8 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JuniorLibApplication<SubscriberController> implements CommandLineRunner {
 
-
-
 	@Autowired
 	ArticleController articleController;
 
@@ -33,5 +31,4 @@ public class JuniorLibApplication<SubscriberController> implements CommandLineRu
 	@Override
 	public void run(String... args){
 	}
-
 }

@@ -18,11 +18,7 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
 
-    @ManyToMany(
-//            targetEntity=Article.class,
-//            cascade = { CascadeType.ALL }
-            cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH }
-            )
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
     @JoinTable(
             name="article_tags",
             joinColumns={@JoinColumn(name="article_id")},
