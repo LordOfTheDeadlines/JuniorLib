@@ -7,7 +7,10 @@ import com.lod.JuniorLib.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -41,9 +44,6 @@ public class ArticleViewController {
     @GetMapping("/article/{id}")
     public String article(@PathVariable("id") Long id, Model model) {
         model.addAttribute("article",articleService.find(id));
-//        model.addAttribute("title", articleService.find(id).getTitle());
-//        model.addAttribute("content", articleService.find(id).getContent());
-//        return articleService.find(id).getContent();
         return "article";
     }
 

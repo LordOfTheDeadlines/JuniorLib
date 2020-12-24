@@ -4,8 +4,6 @@ import com.lod.JuniorLib.model.Article;
 import com.lod.JuniorLib.model.Subject;
 import com.lod.JuniorLib.model.Tag;
 import com.lod.JuniorLib.repository.ArticleRepository;
-import com.lod.JuniorLib.repository.SubjectRepository;
-import com.lod.JuniorLib.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +18,14 @@ public class ArticleService {
     ArticleRepository articleRepository;
 
     @Autowired
-    SubjectRepository subjectRepository;
+    SubjectService subjectService;
 
     public ArticleService(){
 
     }
 
     public void create(String title, String content, String subjectName, String tagsStr) {
-        Subject subject = new Subject(subjectName);
-        Subject subjectFromDB = subjectRepository.findByName(subjectName);
-        if(subjectFromDB==null)
-            subjectRepository.save(subject);
-        else subject = subjectFromDB;
+        Subject subject = subjectService.create(subjectName);
         Article article = new Article(title, content, subject, tagsStr);
         articleRepository.save(article);
     }
@@ -69,7 +63,7 @@ public class ArticleService {
             List<Article> articlesWithSameSubject =
                     articleRepository.findBySubjectName(article.getSubject().getName());
             if(articlesWithSameSubject.size()==1)
-                subjectRepository.deleteById(article.getSubject().getId());
+                subjectService.remove(article.getSubject().getId());
             else articleRepository.deleteById(id);
         }
     }

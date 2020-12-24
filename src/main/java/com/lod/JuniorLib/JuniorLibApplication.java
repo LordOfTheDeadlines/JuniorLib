@@ -1,6 +1,9 @@
 package com.lod.JuniorLib;
 
-import com.lod.JuniorLib.controller.*;
+import com.lod.JuniorLib.controller.ArticleController;
+import com.lod.JuniorLib.controller.ArticleViewController;
+import com.lod.JuniorLib.controller.RegistrationController;
+import com.lod.JuniorLib.controller.SubjectController;
 import com.lod.JuniorLib.service.ArticleService;
 import com.lod.JuniorLib.service.SubjectService;
 import com.lod.JuniorLib.service.UserService;
@@ -10,7 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@EnableJpaRepositories(basePackages = {"com.lod.JuniorLib.repository"})
 public class JuniorLibApplication<SubscriberController> implements CommandLineRunner {
 
 	@Autowired
@@ -33,9 +35,6 @@ public class JuniorLibApplication<SubscriberController> implements CommandLineRu
 
 	@Autowired
 	SubjectController subjectController;
-
-	@Autowired
-	SubjectViewController subjectViewController;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JuniorLibApplication.class, args);

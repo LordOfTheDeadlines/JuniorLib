@@ -13,9 +13,12 @@ public class SubjectService {
 
     public SubjectService(){}
 
-    public void create(String name) {
+    public Subject create(String name) {
         Subject subject = new Subject(name);
-        subjectRepository.save(subject);
+        Subject subjectFromDB = subjectRepository.findByName(name);
+        if(subjectFromDB==null)
+            return subjectRepository.save(subject);
+        return subjectFromDB;
     }
 
     public Iterable<Subject> listAllSubjects() {
